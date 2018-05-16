@@ -5,6 +5,7 @@ import addAritcle from '@/components/addArticle';
 import resetBlock from '@/components/resetBlock';
 import articles from '@/components/articles';
 import demo from '@/components/demo';
+import login from '@/components/login';
 
 Vue.use(Router);
 
@@ -14,6 +15,11 @@ export default new Router({
 	    	path: '/',
 	    	name: 'vUsers',
 	    	component: vUsers
+	    },
+	    {
+	    	path: '/login',
+	    	name: 'login',
+	    	component: login
 	    },
 	    {
 	    	path: '/addArticle',
