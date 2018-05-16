@@ -9,32 +9,41 @@ import login from '@/components/login';
 
 Vue.use(Router);
 
-export default new Router({
+
+
+let router = new Router({
 	routes: [
 	    {
 	    	path: '/',
 	    	name: 'vUsers',
-	    	component: vUsers
+	    	component: vUsers,
+	    	meta: { requiresAuth: true }
 	    },
 	    {
 	    	path: '/login',
 	    	name: 'login',
-	    	component: login
+	    	component: login,
 	    },
 	    {
 	    	path: '/addArticle',
 	    	name: 'addArticle',
-	    	component: addAritcle
+	    	component: addAritcle,
+	    	meta: { requiresAuth: true }
+
 	    },
 	    {
 	    	path: '/resetBlock',
 	    	name: 'resetBlock',
-	    	component: resetBlock
+	    	component: resetBlock,
+	    	meta: { requiresAuth: true }
+
 	    },
 	    {
 	    	path: '/articles',
 	    	name: 'articles',
-	    	component: articles
+	    	component: articles,
+	    	meta: { requiresAuth: true }
+
 	    },
 	    {
 	    	path: '/demo',
@@ -43,3 +52,22 @@ export default new Router({
 	    }
 	]
 })
+
+/* 权限控制 */
+router.beforeEach((to,from,next) => {
+	if (to.matched.some(record => record.meta.requiresAuth)) {
+		// 判断是否登陆
+		if (true) {
+			next({
+				path: '/login'
+			});
+		} else {
+			next();
+		}
+	} else {
+		next();
+	}	
+});
+
+
+export default router;
