@@ -8,7 +8,7 @@
 					<el-input v-model="form.username" placeholder="请输入管理员用户名"></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-input v-model="form.userpwd" placeholder="请输入管理员密码"></el-input>
+					<el-input type="password" v-model="form.userpwd" placeholder="请输入管理员密码"></el-input>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -20,7 +20,8 @@
 		data () {
 			return {
 				form: {
-					username: ''
+					username: '',
+					userpwd: ''
 				}
 			};
 		}
