@@ -12,6 +12,7 @@ global.apiPort = apiPort;
 
 Vue.use(ElementUI);
 // Vue.use(axios);
+axios.defaults.withCredentials=true; // 跨域请求时允许携带cookie
 Vue.prototype.$axios = axios;
 
 // 富文本编辑器
