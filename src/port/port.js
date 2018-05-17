@@ -1,6 +1,7 @@
 let apiPort = {};
 let host = 'http://localhost:8888';
 
+apiPort.login = host + '/admin/login';
 apiPort.getUsers = host + '/admin/users';
 apiPort.addUser = host + '/admin/addUser';
 apiPort.deleteUser = host + '/admin/deleteUser';
