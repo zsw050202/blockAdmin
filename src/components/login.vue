@@ -3,12 +3,15 @@
 		<div class="form">
 			<h2 class="title">zswBloc后台管理登录</h2>
 			<!-- 登陆表单 -->
-			<el-form ref="form">
+			<el-form ref="form" onsubmit="return false;">
 				<el-form-item>
 					<el-input v-model="form.username" placeholder="请输入管理员用户名"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-input type="password" v-model="form.userpwd" placeholder="请输入管理员密码"></el-input>
+				</el-form-item>
+				<el-form-item>
+					<el-button type="primary" @click="login">登陆</el-button>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -24,6 +27,23 @@
 					userpwd: ''
 				}
 			};
+		},
+		methods: {
+			login () {
+				console.log(document.cookie);
+				this.$axios.post(apiPort.login, {
+					username: this.form.username,
+					password: this.form.userpwd
+				}).then((res) => {
+					if (res.data.status == 1) {
+						// 登陆成功
+						this.$message.success('welcome back sir');
+					} else {
+						// 登陆失败
+						this.$message.error(res.data.msg);
+					}
+				});
+			}
 		}
 	};
 </script>
