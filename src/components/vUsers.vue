@@ -81,6 +81,8 @@
 			addUser () {
 				this.dialogVisible = false;
 				this.$axios.post(apiPort.addUser, this.userForm).then((res) => {
+					// 判断用户是否在登陆状态
+					this.isLogin(res);
 					if (res.data.status == 1) {
 						this.$message.success(res.data.msg);
 						this.getPage();
@@ -94,6 +96,7 @@
 				let postData = {username: doc.username};
 				this.$axios.post(apiPort.deleteUser, postData).then((res) => {
 					if (res.data.status == 1) {
+						this.isLogin(res);
 						this.$message.success(res.data.msg);
 						this.getPage();
 					} else {
@@ -105,6 +108,7 @@
 				this.$axios.get(apiPort.getUsers, {params: {
 					page: page
 				}}).then((res) => {
+					this.isLogin(res);
 					if (res.data.status == 1) {
 						this.tableData = res.data.data;
 						this.pages = res.data.pages * 10;

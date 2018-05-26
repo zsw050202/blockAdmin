@@ -15,6 +15,10 @@ Vue.use(ElementUI);
 axios.defaults.withCredentials = true; // 跨域请求时允许携带cookie
 Vue.prototype.$axios = axios;
 
+// 引入公共方法 方法注册在publicFun上
+import tool from './public/tool.js';
+// global.publicFun = publicFun;
+
 // 富文本编辑器
 import '../static/UE/ueditor.config.js';
 import '../static/UE/ueditor.all.min.js';
