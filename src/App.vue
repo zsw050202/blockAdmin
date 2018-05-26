@@ -9,7 +9,7 @@
                 <aside class="aside">
                     <el-menu background-color="#324157">
                         <el-menu-item index="1">
-                            <router-link to="/" tag="div">
+                            <router-link to="/vUsers" tag="div">
                                 <i class="el-icon-document"></i>
                                 用户管理
                             </router-link> 
