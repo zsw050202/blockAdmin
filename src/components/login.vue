@@ -38,6 +38,7 @@
 					if (res.data.status == 1) {
 						// 登陆成功
 						this.$message.success('welcome back sir');
+						this.$router.push('/');
 					} else {
 						// 登陆失败
 						this.$message.error(res.data.msg);
