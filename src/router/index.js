@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+// 组件
 import vUsers from '@/components/vUsers';
 import addAritcle from '@/components/addArticle';
 import resetBlock from '@/components/resetBlock';
@@ -14,13 +15,13 @@ Vue.use(Router);
 let router = new Router({
 	routes: [
 	    {
-	    	path: '/',
+	    	path: '/vUsers',
 	    	name: 'vUsers',
 	    	component: vUsers,
 	    	meta: { requiresAuth: true }
 	    },
 	    {
-	    	path: '/login',
+	    	path: '/',
 	    	name: 'login',
 	    	component: login,
 	    },
@@ -54,20 +55,20 @@ let router = new Router({
 })
 
 /* 权限控制 */
-router.beforeEach((to,from,next) => {
-	if (to.matched.some(record => record.meta.requiresAuth)) {
-		// 判断是否登陆
-		if (true) {
-			next({
-				path: '/login'
-			});
-		} else {
-			next();
-		}
-	} else {
-		next();
-	}	
-});
+// router.beforeEach((to,from,next) => {
+	// if (to.matched.some(record => record.meta.requiresAuth)) {
+	// 	// 判断是否登陆
+	// 	if (true) {
+	// 		next({
+	// 			path: '/login'
+	// 		});
+	// 	} else {
+	// 		next();
+	// 	}
+	// } else {
+	// 	next();
+	// }	
+// });
 
 
 export default router;
