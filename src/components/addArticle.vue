@@ -20,8 +20,6 @@
 			    </el-radio-group>
 		    </el-form-item>
 		    <el-form-item label="内容:">
-		    	<!-- <quill-editor ref="myTextEditor" v-model="formData.contents" :options="editorOption"></quill-editor> -->
-		    	<!-- <UE :defaultMsg=defaultMsg :config=config ref="ue"></UE> -->
 		    	<div  ref="editor" style="text-align:left;background:#fff"></div>
 			</el-form-item>
 			<el-form-item>
@@ -43,7 +41,6 @@
         		this.editorContent = html;
         	}
         	editor.create();
-        	// editor.txt.html('<p>初始内容</p>')
         },
 		data () {
 			return {
@@ -55,14 +52,18 @@
 			submit () {
 				this.formData.contents = this.editorContent;
 				// 只做不为空的验证
-				this.$axios.post(apiPort.addBlock, this.formData).then((res) => {
-					if (res.data.status == 1) {
-						this.$message.success(res.data.msg);
-					} else {
-						this.$message.errord(res.data.msg);
-					}
-				});
-				console.log(this.formData);
+				if (this.formData.title && this.formData.des && this.formData.artType && this.formData.contents) {
+					this.$axios.post(apiPort.addBlock, this.formData).then((res) => {
+						this.isLogin(res);
+						if (res.data.status == 1) {
+							this.$message.success(res.data.msg);
+						} else {
+							this.$message.error(res.data.msg);
+						}
+					});
+				} else {
+					this.$message.error('请检查项目是否填写完整');
+				}
 			}
 		}
 	};

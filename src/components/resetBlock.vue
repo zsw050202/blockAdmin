@@ -29,7 +29,7 @@
 				this.$axios.get(apiPort.queryArticle, {
 					params: {id: this.artId}
 				}).then((res) => {
-					// this.defaultMsg = res.data.data.contents;
+					this.isLogin(res);
 					// 初始化编辑编辑器
 					var editor = new E(this.$refs.editor);
         			editor.customConfig.onchange = (html) => {
@@ -43,6 +43,7 @@
 			submit () {
 				// console.log(this.$refs.ue.getUEContent());
 				this.$axios.post(apiPort.updateArticle, {id: this.artId, contents: this.editorContent}).then((res) => {
+					this.isLogin(res);
 					if (res.data.status == 1) {
 						this.$message.success(res.data.msg);
 					} else {
