@@ -30,7 +30,6 @@
 		},
 		methods: {
 			login () {
-				console.log(document.cookie);
 				this.$axios.post(apiPort.login, {
 					username: this.form.username,
 					password: this.form.userpwd
@@ -38,7 +37,7 @@
 					if (res.data.status == 1) {
 						// 登陆成功
 						this.$message.success('welcome back sir');
-						this.$router.push('/');
+						this.$router.push({name: 'vUsers'});
 					} else {
 						// 登陆失败
 						this.$message.error(res.data.msg);
