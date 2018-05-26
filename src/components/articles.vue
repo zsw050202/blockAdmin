@@ -67,6 +67,7 @@
 			query () {},
 			getPage (page) {
 				this.$axios.get(apiPort.articles, {params: {page: page,artType: this.artType}}).then((res) => {
+					this.isLogin(res);
 					if (res.data.status == 1) {
 						this.tableData = res.data.data;
 						this.pages = res.data.pages * 10;
@@ -117,6 +118,7 @@
 			},
 			handleDelete (id) {
 				this.$axios.post(apiPort.deleteArticle, {id: id}).then((res) => {
+					this.isLogin(res);
 					if (res.data.status == 1) {
 						this.$message.success(res.data.msg);
 						this.getPage();
