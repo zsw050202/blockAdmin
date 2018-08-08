@@ -30,9 +30,36 @@
 		},
 		methods: {
 			login () {
-				this.$axios.post(apiPort.login, {
-					username: this.form.username,
-					password: this.form.userpwd
+				// this.$axios.post(apiPort.login, {
+				// 	username: this.form.username,
+				// 	password: this.form.userpwd
+				// }).then((res) => {
+				// 	if (res.data.status == 1) {
+				// 		// 登陆成功
+				// 		this.$message.success('welcome back sir');
+				// 		this.$router.push({name: 'vUsers'});
+				// 	} else {
+				// 		// 登陆失败
+				// 		this.$message.error(res.data.msg);
+				// 	}
+				// });
+				this.$axios({
+					method: 'post',
+					url: apiPort.login,
+					// headers: {
+					// 	'Content-type': 'application/x-www-form-urlencoded'
+					// },
+					data: {
+						username: this.form.username,
+						password: this.form.userpwd
+					},
+				 	transformRequest: [function (data) {
+				        let ret = ''
+				        for (let it in data) {
+				          ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+				        }
+				        return ret;
+				      }]
 				}).then((res) => {
 					if (res.data.status == 1) {
 						// 登陆成功

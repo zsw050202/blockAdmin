@@ -65,7 +65,6 @@
 		.quill-editor {
 			background: #fff;
 		}
-		
 		.confirm-btn {
 			margin-top: 20px;
 		}
